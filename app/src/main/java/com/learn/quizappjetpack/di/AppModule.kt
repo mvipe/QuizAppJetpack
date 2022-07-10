@@ -1,6 +1,7 @@
 package com.learn.quizappjetpack.di
 
 import com.learn.quizappjetpack.network.QuestionApi
+import com.learn.quizappjetpack.repository.QuestionRepository
 import com.learn.quizappjetpack.util.constants
 import dagger.Module
 import dagger.Provides
@@ -15,6 +16,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+    @Singleton
+    @Provides
+    fun provideQuestionRepository(api:QuestionApi)=QuestionRepository(api)
+
     @Singleton
     @Provides
     fun provideQuestionApi():QuestionApi{
